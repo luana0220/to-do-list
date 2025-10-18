@@ -2,11 +2,11 @@ const botaoMais = document.querySelector('.contentBotao');
 const inputArea = document.querySelector('.inputArea');
 
 botaoMais.addEventListener("click", () => {
-    if(inputArea.style.display === 'none') {
-        inputArea.style.display = 'flex';
-    } else {
-        inputArea.style.display = 'none';
-    }
+  if (inputArea.style.display === 'none') {
+    inputArea.style.display = 'flex';
+  } else {
+    inputArea.style.display = 'none';
+  }
 });
 
 const input = document.getElementById('addTarefa');
@@ -14,44 +14,72 @@ const botao = document.getElementById('botaoAdd');
 const lista = document.getElementById('listaTarefas');
 
 function adicionarTarefa() {
-    const textoTarefa = input.value.trim();
+  const textoTarefa = input.value.trim();
+  //verifica se o usuário realmente digitou alguma coisa
+  if (textoTarefa === '') {
+    alert("Digite uma tarefa antes de adicionar!");
+    return;
+  }
 
-    if(textoTarefa === '') {
-        alert("Digite uma tarefa antes de adicionar!");
-        return;
+  //cria uma tarefa
+  const li = document.createElement('li');
+  //cria o botão que concluí uma tarefa
+  const botaoConcluir = document.createElement('button');
+  botaoConcluir.classList.add('concluir');
+
+
+  const texto = document.createElement("span");
+  texto.textContent = textoTarefa;
+
+  //adiciona o botão de remover ao criar uma tarefa
+  const botaodeRemover = document.createElement('button');
+  botaodeRemover.textContent = 'X Remover tarefa';
+  botaodeRemover.classList.add('remover');
+  botaodeRemover.style.display = 'none';
+
+  li.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (botaodeRemover.style.display === 'none') {
+      botaodeRemover.style.display = 'block';
+    } else {
+      botaodeRemover.style.display = 'none';
     }
-
-    const li = document.createElement('li');
-    li.textContent = textoTarefa;
-
-    const botaodeRemover = document.createElement('button');
-    botaodeRemover.textContent = '❌';
-    botaodeRemover.classList.add('remover');
-    botaodeRemover.addEventListener('click', () => {
-        li.remove();
-        salvarTarefas();
-    });
-
-    li.addEventListener('click', () => {
-        li.classList.toggle('concluida');
-        salvarTarefas();
-    });
-
-    li.appendChild(botaodeRemover);
-    lista.appendChild(li);
-    input.value = '';
+  });
+  botaoConcluir.addEventListener('click', () => {
+    li.classList.toggle('concluida');
     salvarTarefas();
+  });
+
+
+  botaodeRemover.addEventListener('click', () => {
+    li.classList.toggle('removida');
+    li.remove();
+    salvarTarefas();
+  });
+
+
+
+
+
+  li.appendChild(botaoConcluir);
+  li.appendChild(texto);
+  li.appendChild(botaodeRemover);
+  lista.appendChild(li);
+  input.value = '';
+  salvarTarefas();
 }
 
+
+
 function salvarTarefas() {
-    const tarefas = [];
-    lista.querySelectorAll('li').forEach(li => {
-        tarefas.push({
-            texto: li.firstChild.textContent,
-            concluida: li.classList.contains('concluida')
-        });
+  const tarefas = [];
+  lista.querySelectorAll('li').forEach(li => {
+    tarefas.push({
+      texto: li.querySelector('span').textContent,
+      concluida: li.classList.contains('concluida')
     });
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  });
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
 
 function carregarTarefas() {
@@ -65,7 +93,7 @@ function carregarTarefas() {
     }
 
     const botaodeRemover = document.createElement('button');
-    botaodeRemover.textContent = '❌';
+    botaodeRemover.textContent = 'X Remover tarefa';
     botaodeRemover.classList.add('remover');
 
     botaodeRemover.addEventListener('click', () => {
@@ -73,11 +101,9 @@ function carregarTarefas() {
       salvarTarefas();
     });
 
-    li.addEventListener('click', () => {
-      li.classList.toggle('concluida');
-      salvarTarefas();
-    });
-
+    botaoConcluir.addEventListener('click', () => { li.classList.toggle('concluida'); salvarTarefas(); });
+    li.appendChild(botaoConcluir);
+    li.appendChild(texto);
     li.appendChild(botaodeRemover);
     lista.appendChild(li);
   });
