@@ -1,0 +1,35 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.containerBotaoAdd {
+    position: fixed;      /* fixa no canto da tela */
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contentBotao {
+    background-color: #4CAF50;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inputArea {
+    display: flex;        /* inicialmente escondido */
+    gap: 5px;
+}
+
