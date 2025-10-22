@@ -1,123 +1,90 @@
-const botaoMais = document.querySelector('.contentBotao');
+const botaoMais = document.getElementById('btnAbrirForm');
 const inputArea = document.querySelector('.inputArea');
-
-botaoMais.addEventListener("click", () => {
-  if (inputArea.style.display === 'none') {
-    inputArea.style.display = 'flex';
-  } else {
-    inputArea.style.display = 'none';
-  }
-});
-
 const input = document.getElementById('addTarefa');
-const botao = document.getElementById('botaoAdd');
+const botaoAdicionar = document.getElementById('botaoAdd');
 const lista = document.getElementById('listaTarefas');
 
-function adicionarTarefa() {
-  const textoTarefa = input.value.trim();
-  //verifica se o usuário realmente digitou alguma coisa
-  if (textoTarefa === '') {
-    alert("Digite uma tarefa antes de adicionar!");
-    return;
-  }
+// abre/fecha o formulário
+botaoMais.addEventListener("click", () => {
+  inputArea.classList.toggle('active');
+});
 
-  //cria uma tarefa
-  const li = document.createElement('li');
-  //cria o botão que concluí uma tarefa
-  const botaoConcluir = document.createElement('button');
-  botaoConcluir.classList.add('concluir');
-
-
-  const texto = document.createElement("span");
-  texto.textContent = textoTarefa;
-
-  //adiciona o botão de remover ao criar uma tarefa
-  const botaodeRemover = document.createElement('button');
-  botaodeRemover.textContent = 'X Remover tarefa';
-  botaodeRemover.classList.add('remover');
-  botaodeRemover.style.display = 'none';
-
-  li.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    if (botaodeRemover.style.display === 'none') {
-      botaodeRemover.style.display = 'block';
-    } else {
-      botaodeRemover.style.display = 'none';
-    }
-  });
-  botaoConcluir.addEventListener('click', () => {
-    li.classList.toggle('concluida');
-    salvarTarefas();
-  });
-
-
-  botaodeRemover.addEventListener('click', () => {
-    li.classList.toggle('removida');
-    li.remove();
-    salvarTarefas();
-  });
-
-
-
-
-
-  li.appendChild(botaoConcluir);
-  li.appendChild(texto);
-  li.appendChild(botaodeRemover);
-  lista.appendChild(li);
-  input.value = '';
-  salvarTarefas();
-}
-
-
-
-function salvarTarefas() {
-  const tarefas = [];
-  lista.querySelectorAll('li').forEach(li => {
-    tarefas.push({
-      texto: li.querySelector('span').textContent,
-      concluida: li.classList.contains('concluida')
-    });
-  });
-  localStorage.setItem('tarefas', JSON.stringify(tarefas));
-}
-
-function carregarTarefas() {
-  const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas')) || [];
-  tarefasSalvas.forEach(tarefa => {
-    const li = document.createElement('li');
-    li.textContent = tarefa.texto;
-
-    if (tarefa.concluida) {
-      li.classList.add('concluida');
-    }
-
-    const botaodeRemover = document.createElement('button');
-    botaodeRemover.textContent = 'X Remover tarefa';
-    botaodeRemover.classList.add('remover');
-
-    botaodeRemover.addEventListener('click', () => {
-      li.remove();
-      salvarTarefas();
-    });
-
-    botaoConcluir.addEventListener('click', () => { li.classList.toggle('concluida'); salvarTarefas(); });
-    li.appendChild(botaoConcluir);
-    li.appendChild(texto);
-    li.appendChild(botaodeRemover);
-    lista.appendChild(li);
-  });
-}
-
-// Quando clicar no botão, adiciona uma tarefa
-botao.addEventListener('click', adicionarTarefa);
-
-// Quando apertar Enter, também adiciona
+// adiciona com Enter
 input.addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     adicionarTarefa();
   }
 });
 
-// Carrega as tarefas assim que o site abre
+botaoAdicionar.addEventListener('click', adicionarTarefa);
+
+function adicionarTarefa() {
+  const textoTarefa = input.value.trim();
+  if (textoTarefa === '') {
+    alert("Digite uma tarefa antes de adicionar!");
+    return;
+  }
+
+  criarElementoTarefa(textoTarefa, false);
+  input.value = '';
+  salvarTarefas();
+}
+
+// cria o elemento visual de uma tarefa
+function criarElementoTarefa(textoTarefa, concluida) {
+  const li = document.createElement('li');
+  li.classList.add('tarefa-item');
+  if (concluida) li.classList.add('concluida');
+
+  const botaoCheck = document.createElement('div');
+  botaoCheck.classList.add('checkbox');
+  if (concluida) botaoCheck.classList.add('checked');
+
+  const texto = document.createElement('span');
+  texto.classList.add('tarefa-texto');
+  texto.textContent = textoTarefa;
+
+  const botaoRemover = document.createElement('button');
+  botaoRemover.classList.add('btn-remover');
+  botaoRemover.textContent = 'Remover';
+
+  // marcar/desmarcar tarefa
+  botaoCheck.addEventListener("click", () => {
+    botaoCheck.classList.toggle('checked');
+    li.classList.toggle('concluida');
+    salvarTarefas();
+  });
+
+  // remover tarefa
+  botaoRemover.addEventListener("click", () => {
+    li.remove();
+    salvarTarefas();
+  });
+
+  li.appendChild(botaoCheck);
+  li.appendChild(texto);
+  li.appendChild(botaoRemover);
+  lista.appendChild(li);
+}
+
+// salva tarefas no localStorage
+function salvarTarefas() {
+  const tarefas = [];
+  lista.querySelectorAll('li').forEach(li => {
+    tarefas.push({
+      texto: li.querySelector('.tarefa-texto').textContent,
+      concluida: li.classList.contains('concluida')
+    });
+  });
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+// carrega tarefas ao abrir a página
+function carregarTarefas() {
+  const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefasSalvas.forEach(tarefa => {
+    criarElementoTarefa(tarefa.texto, tarefa.concluida);
+  });
+}
+
 carregarTarefas();

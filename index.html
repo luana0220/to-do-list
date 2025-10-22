@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <h1>TO-DO LIST</h1>
-        <nav>
-            <ul>
-                <li><a href="#MinhasTarefas">Minhas tarefas</a></li>
-                <li><a href="#TarefasConcluidas"></a>Tarefas Concluidas</li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="header-left">
+                <div class="contentBotao" id="btnAbrirForm">+</div>
+                <h1>TO-DO LIST</h1>
+            </div>
+            <nav>
+                <ul id="navegacao">
+                    <li><a href="#MinhasTarefas">Minhas tarefas</a></li>
+                    <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <div id="container">
-        <div class="containerBotaoAdd">
-            <div class="contentBotao">+</div>
-            <div class="inputArea" style="display: none;">
+    <main id="container">
+        <div class="inputArea">
+            <h3>Nova tarefa</h3>
+            <div class="input-group">
                 <input type="text" id="addTarefa" placeholder="Digite uma nova tarefa...">
                 <button id="botaoAdd">Adicionar</button>
+                <button id="botaoCancelar">Cancelar</button>
             </div>
         </div>
-        <ul id="listaTarefas"></ul>
-   </div>
-   <script src="script.js"></script>
+        <ul id="listaTarefas">
+            <!-- itens fake-->
+            <li class="tarefa-item">
+                <div class="checkbox"></div>
+                <span class="tarefa-texto">Estudar CSS Flexbox</span>
+                <button class="btn-remover">Remover</button>
+            </li>
+            <li class="tarefa-item">
+                <div class="checkbox"></div>
+                <span class="tarefa-texto">Fazer exercícios de JavaScript</span>
+                <button class="btn-remover">Remover</button>
+            </li>
+
+            <li class="tarefa-item">
+                <div class="checkbox"></div>
+                <span class="tarefa-texto">Aprender HTML básico</span>
+                <button class="btn-remover">Remover</button>
+            </li>
+        </ul>
+    </main>
+    <script src="script.js"></script>
 </body>
+
 </html>
