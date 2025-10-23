@@ -50,6 +50,7 @@ nav ul {
   gap: 20px;
   margin: 0;
   padding: 0;
+  
 }
 
 nav a {
@@ -264,5 +265,43 @@ nav a:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.hamburguer {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburguer {
+    display: block;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 100px;
+    left: -250px; /* escondido à esquerda */
+    height: 100%;
+    width: 200px;
+    background-color: #7b68ee;
+    flex-direction: column;
+    padding-top: 100px; /* para não ficar atrás do header */
+    gap: 20px;
+    z-index: 90;
+  }
+
+  nav ul.active {
+    left: 0;
+    padding: 15px;
+  }
+
+
+  nav a {
+    font-size: 1rem;
   }
 }

@@ -4,6 +4,13 @@ const input = document.getElementById('addTarefa');
 const botaoAdicionar = document.getElementById('botaoAdd');
 const lista = document.getElementById('listaTarefas');
 
+const hamburguer = document.querySelector('.hamburguer');
+const navegacao = document.getElementById('navegacao');
+
+hamburguer.addEventListener('click', () => {
+  navegacao.classList.toggle('active');
+});
+
 // abre/fecha o formulário
 botaoMais.addEventListener("click", () => {
   inputArea.classList.toggle('active');
