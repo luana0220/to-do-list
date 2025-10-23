@@ -185,16 +185,16 @@ nav a:hover {
   margin-bottom: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     .input-group {
-        flex-direction: column;  /* empilha verticalmente no mobile */
-    }
+        flex-direction: column;  
     
     .input-group button {
-        width: 100%;  /* botões ocupam largura toda */
+        width: 100%;  
     }
 }
+*/
+
 
 .checkbox {
   width: 25px;
