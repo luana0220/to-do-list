@@ -16,15 +16,32 @@
                 <h1>TO-DO LIST</h1>
             </div>
             <nav>
-                <button class="hamburguer">☰</button>
-                <ul id="navegacao">
-                    <li><a href="#Tarefas">Minhas tarefas</a></li>
-                    <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
-                    <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
+                <ul id="navegacaoDekstop">
+                        <li><a href="#Tarefas">Minhas tarefas</a></li>
+                        <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
+                        <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
                 </ul>
+                <button class="hamburguer">☰</button>
+                <div id="sidebar">
+                    <div id="iconTitulo">
+                        <img src="img/iconToDo.png" alt="icone de lista" id="icon">
+                        <h5>TO-DO LIST</h5>
+                    </div>
+                    
+                    <ul id="navegacao">
+                        <li><a href="#adicionar"><div id="botaoEtexto">
+                            <div class="contentBotao" id="btnAbrirFormMenu">+</div>
+                            <h4>Adicionar Tarefa</h4>
+                    </div></a></li>
+                        <li><a href="#Tarefas">Minhas tarefas</a></li>
+                        <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
+                        <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
+    <div class="telaCinza"></div>
     <main id="container">
         <div class="inputArea">
             <h3>Nova tarefa</h3>

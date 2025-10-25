@@ -1,4 +1,5 @@
 const botaoMais = document.getElementById('btnAbrirForm');
+const botaoMaisSideBar = document.getElementById('btnAbrirFormMenu');
 const inputArea = document.querySelector('.inputArea');
 const input = document.getElementById('addTarefa');
 const botaoAdicionar = document.getElementById('botaoAdd');
@@ -6,9 +7,12 @@ const lista = document.getElementById('listaTarefas');
 
 const hamburguer = document.querySelector('.hamburguer');
 const navegacao = document.getElementById('navegacao');
+const overlay = document.querySelector('.telaCinza');
+const barraLateral = document.getElementById('sidebar');
 
 hamburguer.addEventListener('click', () => {
-  navegacao.classList.toggle('active');
+  barraLateral.classList.toggle('active');
+  overlay.classList.toggle('active');
 });
 
 // abre/fecha o formulário
