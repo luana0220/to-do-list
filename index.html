@@ -17,9 +17,9 @@
             </div>
             <nav>
                 <ul id="navegacaoDekstop">
-                        <li><a href="#Tarefas">Minhas tarefas</a></li>
-                        <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
-                        <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
+                    <li><a href="#Tarefas">Minhas tarefas</a></li>
+                    <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
+                    <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
                 </ul>
                 <button class="hamburguer">☰</button>
                 <div id="sidebar">
@@ -27,12 +27,14 @@
                         <img src="img/iconToDo.png" alt="icone de lista" id="icon">
                         <h5>TO-DO LIST</h5>
                     </div>
-                    
+
                     <ul id="navegacao">
-                        <li><a href="#adicionar"><div id="botaoEtexto">
-                            <div class="contentBotao" id="btnAbrirFormMenu">+</div>
-                            <h4>Adicionar Tarefa</h4>
-                    </div></a></li>
+                        <li><a href="#adicionar">
+                                <div id="botaoEtexto">
+                                    <div class="contentBotao" id="btnAbrirFormMenu">+</div>
+                                    <h4>Adicionar Tarefa</h4>
+                                </div>
+                            </a></li>
                         <li><a href="#Tarefas">Minhas tarefas</a></li>
                         <li><a href="#TarefasConcluidas">Tarefas Concluidas</a></li>
                         <li><a href="#TarefasNaoConcluidas">Tarefas Não Concluidas</a></li>
@@ -43,15 +45,46 @@
     </header>
     <div class="telaCinza"></div>
     <main id="container">
-        <div class="inputArea">
-            <h3>Nova tarefa</h3>
-            <div class="input-group">
-                <input type="text" id="addTarefa" placeholder="Digite uma nova tarefa...">
-                <button id="botaoAdd">Adicionar</button>
-                <button id="botaoCancelar">Cancelar</button>
+        <section id="secaoTarefas" class="secaoConteudo active">
+            <div class="inputArea">
+                <h3>Nova tarefa</h3>
+                <div class="input-group">
+                    <input type="text" id="addTarefa" placeholder="Digite uma nova tarefa...">
+                    <button id="botaoAdd">Adicionar</button>
+                    <button id="botaoCancelar">Cancelar</button>
+                </div>
             </div>
-        </div>
-        <ul id="listaTarefas"></ul>
+            <ul id="listaTarefas">
+                <li class="tarefa-item concluida"> <div class="checkbox checked"></div> <span class="tarefa-texto">Aprender HTML básico</span> <button class="btn-remover">Remover</button> </li>
+            </ul>
+        </section>
+
+        <section id="secaoTarefasConcluidas" class="secaoConteudo active">
+            <div class="headerSection">
+                <h2>✅ Tarefas Concluídas</h2>
+                <p class="descricaoSection">Tarefas marcadas como cconcluídas</p>
+            </div>
+            <ul id="tarefasConcluidas">
+                <!--Teste de tarefas concluídas-->
+                <li class="tarefa-item concluida"> <div class="checkbox checked"></div> <span class="tarefa-texto">Aprender HTML básico</span> <button class="btn-remover">Remover</button> </li>
+            </ul>
+            <div class="mensagem-vazia" id="vazioConcluidas">
+                <div class="vazio-icon">📝</div>
+                <p>Você ainda não completou nenhuma tarefa.</p>
+            </div>
+        </section>
+
+        <section id="terefasNaoConcluidas" class="secaoConteudo">
+            <div class="headerSection">
+                <h2>❌ Tarefas Pendentes</h2>
+                <p class="descricaoSection">Tarefas marcadas como cconcluídas</p>
+            </div>
+            <ul id="tarefasPendentes"></ul>
+            <div class="mensagem-vazia" id="vazioPendentes">
+                <div class="vazio-icon">🎉</div>
+                <p>Parabéns, você não tem nenhuma tarefa pendente!</p>
+            </div>
+        </section>
     </main>
     <script src="script.js"></script>
 </body>

@@ -27,6 +27,7 @@ header {
 header h1 {
   margin: 0;
   font-size: 1.5rem;
+  color: #eee;
 }
 
 .header-content {
@@ -337,7 +338,43 @@ nav a:hover {
   gap: 5px;
 }
 
+/*CSS das seções*/
+.secaoConteudo {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
 
+.secaoConteudo.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.headerSection {
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 15px;
+} 
+
+.headerSection h2 {
+  font-size: 2rem;
+  color: #6D435A;
+  margin-bottom: 10px;
+}
+
+.descricaoSection {
+  font-size: 1.05rem;
+  color: #666;
+}
 
 @media (max-width: 768px) {
   .hamburguer {
