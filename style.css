@@ -360,7 +360,7 @@ nav a:hover {
 }
 
 .headerSection {
-  text-align: left;
+  text-align: center;
   padding-left: 20px;
   margin-bottom: 15px;
 } 
@@ -374,6 +374,49 @@ nav a:hover {
 .descricaoSection {
   font-size: 1.05rem;
   color: #666;
+}
+
+.mensagem-vazia {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.mensagem-vazia.active {
+  display: block;
+}
+
+.vazio-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.mensagem-vazia p {
+  font-size: 1.1rem;
+}
+
+#tarefasConcluidas, #tarefasPendentes {
+  margin-top: 20px;
+  padding: 0 20px;
+  list-style: none;
+}
+
+#tarefasConcluidas li, #tarefasPendentes li {
+  position: relative;
+    padding: 15px 20px;
+    align-items: center;
+    gap: 15px;
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#tarefasConcluidas li:hover,  #tarefasPendentes li:hover{
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 768px) {

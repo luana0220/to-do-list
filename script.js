@@ -9,6 +9,54 @@ const hamburguer = document.querySelector('.hamburguer');
 const navegacao = document.getElementById('navegacao');
 const overlay = document.querySelector('.telaCinza');
 const barraLateral = document.getElementById('sidebar');
+const links = document.querySelectorAll('#navegacaoDekstop a, #navegacao a');
+
+function trocarSection (idsection) {
+  document.querySelector('.secaoConteudo').forEach(s => {
+    s.classList.remove("active");
+  });
+
+  const sectionAtiva = document.getElementById('secao' + idsection);
+  if(sectionAtiva) {
+    sectionAtiva.classList.add('active');
+  }
+
+  barraLateral.classList.remove('active');
+  overlay.classList.remove('active');
+  atualizarSecoes();
+}
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idsection = link.getAttribute('href').replace('#', '');
+
+      if(idsection === 'adicionar') {
+        inputArea.classList.add('active');
+        trocarSection('Tarefas');
+        return;
+      }
+    });
+  });
+
+  function atualizarSecoes() {
+    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    const concluidas = tarefasSalvas.filter(t => t.concluida);
+    const naoConcluidas = tarefasSalvas.filter(t => !t.concluida);
+
+    const listaConcluidas = document.getElementById('tarefasConcluidas');
+    const vazioConcluidas = document.getElementById('vazioConcluidas');
+    listaConcluidas.innerHTML = '';
+
+    if(concluidas.length === 0) {
+      vazioConcluidas.classList.add('active');
+    } else {
+      vazioConcluidas.classList.remove("active");
+      concluidas.forEach(tarefa => {
+        criarElementoNaLista(tarefa.texto, tarefa.concluida, listaConcluidas);
+      });
+    }
+  }
 
 hamburguer.addEventListener('click', () => {
   barraLateral.classList.toggle('active');
